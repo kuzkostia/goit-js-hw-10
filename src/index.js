@@ -4,13 +4,13 @@ import Notiflix from 'notiflix';
 import { fetchCountries } from './js/fetchCountries';
 
 const searchBox = document.querySelector('#search-box');
-const countriesList = document.querySelector('.country-list');
-const countryInformation = document.querySelector('.country-info');
+const countryList = document.querySelector('.country-list');
+const countryInfo = document.querySelector('.country-info');
 const DEBOUNCE_DELAY = 300;
 
-searchBox.addEventListener('input', debounce(search, DEBOUNCE_DELAY));
+searchBox.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
-function search(event) {
+function onSearch(event) {
   const searchQuery = event.target.value.trim();
   if (!searchQuery || searchQuery === '') {
     clearMarkup();
@@ -42,8 +42,8 @@ function search(event) {
 }
 
 function clearMarkup() {
-  countriesList.innerHTML = '';
-  countryInformation.innerHTML = '';
+  countryList.innerHTML = '';
+  countryInfo.innerHTML = '';
 }
 
 function renderCountryList(countries) {
@@ -54,8 +54,8 @@ function renderCountryList(countries) {
     )
     .join('');
 
-  countriesList.innerHTML = markup;
-  countryInformation.innerHTML = '';
+  countryList.innerHTML = markup;
+  countryInfo.innerHTML = '';
 }
 
 function renderCountryInfo(country) {
@@ -71,6 +71,6 @@ function renderCountryInfo(country) {
     <p><strong>Languages:</strong> ${languages}</p>
     `;
 
-  countryInformation.innerHTML = markup;
-  countriesList.innerHTML = '';
+  countryInfo.innerHTML = markup;
+  countryList.innerHTML = '';
 }
